@@ -100,7 +100,7 @@ OPEN SOURCE LICENSE (LICENSE)
 Apache License 2.0 with HJK-Inc Security Amendments
 
 Additional terms:
-1. Security vulnerabilities must be reported to security@hjk-inc.com
+1. Security vulnerabilities must be reported to godmy5154@gmail.com 
 2. Modified versions must maintain integrity verification
 3. Commercial use beyond 1000 nodes requires commercial license
 4. Military/Government use requires notification
