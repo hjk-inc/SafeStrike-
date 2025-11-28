@@ -92,24 +92,7 @@ Expiration: NONE
 // AUTH: SERAPHIM-PROTOCOL-ALPHA
 ```
 
-⚖️ Dual License Structure
 
-COMMERCIAL LICENSE (LICENSE-COMMERCIAL)
-
-```text
-HJK-INDUSTRIES COMMERCIAL LICENSE
-Version 1.0, $(date +%Y-%m-%d)
-
-GRANT: Worldwide, royalty-free license for internal use
-RESTRICTIONS: 
-  - No redistribution of modified versions
-  - No commercial SaaS offerings
-  - Government use requires notification
-  - Military deployment requires direct licensing
-
-TERMS: Perpetual license for authorized entities
-SUPPORT: Enterprise support available via hjk-inc.com
-```
 
 OPEN SOURCE LICENSE (LICENSE)
 
