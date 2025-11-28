@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>SafeStrike Obsidian | AI-Powered Penetration Testing Tool | hjk-inc</title>
+    <meta name="description" content="SafeStrike Obsidian: Next-generation penetration testing platform with AI automation, hardware-bound security, and FIPS 140-2 compliance. Download the open-source pentest tool for red teams.">
+    <meta name="keywords" content="penetration testing tool, pentest tool, AI security, red team tool, vulnerability scanner, network security, ethical hacking, cybersecurity tool, safe strike, obsidian security, hjk-inc">
+    <meta name="author" content="hjk-inc Security Engineering">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hjk-inc.github.io/safe-strike-obsidian/">
+    <meta property="og:title" content="SafeStrike Obsidian | AI-Powered Penetration Testing Tool">
+    <meta property="og:description" content="Open-source penetration testing platform with AI automation, hardware security, and FIPS 140-2 compliance for red teams and security professionals.">
+    <meta property="og:image" content="https://hjk-inc.github.io/safe-strike-obsidian/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hjk-inc.github.io/SafeStrike-/">
+    <meta property="twitter:title" content="SafeStrike Obsidian | AI-Powered Penetration Testing Tool">
+    <meta property="twitter:description" content="Open-source pentest tool with AI automation, hardware-bound security, and FIPS compliance for red teams.">
+    <meta property="twitter:image" content="https://github.com/hjk-inc/hjk-inc.github.io/blob/main/IMG-20250817-WA0000.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hjk-inc.github.io/SafeStrike-">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SafeStrike Obsidian",
+      "url": "https://hjk-inc.github.io/SafeStrike-/",
+      "description": "AI-powered penetration testing platform with hardware-bound security and FIPS 140-2 compliance",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Linux",
+      "softwareVersion": "0.6",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "hjk-inc",
+        "url": "https://github.com/hjk-inc"
+      },
+      "featureList": [
+        "AI-powered vulnerability detection",
+        "Hardware-bound cryptographic keys",
+        "FIPS 140-2 compliant",
+        "TPM 2.0 integration",
+        "LLM self-audit capability",
+        "Triple interface: CLI, GUI, Native"
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --accent: #00f7ff;
+            --red: #ff2e63;
+            --yellow: #f2ff00;
+            --green: #00ff88;
+            --text: #e0e0ff;
+            --terminal-bg: rgba(10, 10, 15, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .terminal {
+            background: var(--terminal-bg);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 4px;
+            padding: 16px;
+            margin: 8px 0;
+            overflow: auto;
+            font-size: 14px;
+        }
+        
+        .prompt {
+            color: var(--green);
+            margin-right: 8px;
+        }
+        
+        .command {
+            color: var(--accent);
+        }
+        
+        .output {
+            color: var(--text);
+            margin-top: 4px;
+        }
+        
+        .critical {
+            color: var(--red);
+            font-weight: bold;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(10, 10, 15, 0.9);
+            border-bottom: 1px solid var(--accent);
+        }
+        
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+        
+        .tagline {
+            font-size: 20px;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--accent);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--green);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-security {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+        
+        .badge-hardware {
+            background: rgba(255, 46, 99, 0.1);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+        
+        .install {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .install h2 {
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00f7ff, #00ff88);
+            color: var(--bg);
+            font-weight: bold;
+            padding: 12px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 16px;
+            margin: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+        }
+        
+        .btn-download {
+            background: linear-gradient(90deg, var(--red), var(--accent));
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+            opacity: 0.6;
+        }
+        
+        .scan-demo {
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* SEO-friendly content styling */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        
+        p {
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Hidden SEO content - only visible to search engines */
+        .seo-content {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">SAFE<sub>STRIKE</sub> <span style="color:var(--red)">OBSIDIAN</span></h1>
+        <p class="tagline">AI-Powered Penetration Testing Tool for Red Teams | Hardware-Bound Security | FIPS 140-2 Compliant</p>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2 class="section-title">Penetration Testing Redefined</h2>
+            <p>SafeStrike Obsidian is the industry's most advanced open-source penetration testing platform, combining AI automation with hardware-level security for red teams and security professionals. Unlike traditional pentest tools, SafeStrike uses local AI models to autonomously identify vulnerabilities while maintaining strict security boundaries through hardware-bound cryptographic keys.</p>
+            
+            <div class="terminal">
+                <div><span class="prompt">[hjk-inc@seraphim]</span><span class="command"> ./bin/safe-strike 192.168.1.1</span></div>
+                <div class="output">{"version":"0.6-SERAPHIM","target":"192.168.1.1","scan":"192.168.1.1:80/http,443/https","ai":{"critical":["HTTP headers leak server version"]}}</div>
+                <div class="output"><span style="color:#00f7ff">[ SAFE STRIKE 0.6-SERAPHIM ]</span></div>
+                <div class="output"><span class="critical">● 192.168.1.1:80/http</span></div>
+                <div class="output"><span style="color:#f2ff00">○ 192.168.1.1:443/https</span></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Key Features for Security Professionals</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Hardware-Bound Security</h3>
+                    <div><span class="badge badge-hardware">TPM 2.0</span><span class="badge badge-hardware">hjk-inc HSM</span></div>
+                    <p>SafeStrike uses hardware-rooted cryptography for key derivation. Keys are generated from TPM 2.0 entropy sources or hjk-inc security dongles, ensuring no static secrets exist in the codebase. FIPS 140-2 Level 2 compliant for government and enterprise deployments.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI Self-Audit Capability</h3>
+                    <div><span class="badge badge-security">Jailbreak Test</span><span class="badge badge-security">Leak Detection</span></div>
+                    <p>The integrated AI continuously tests itself for vulnerabilities. SafeStrike runs adversarial prompts to detect jailbreaks, data leaks, and injection vulnerabilities. If vulnerabilities are found, the AI component is automatically disabled, maintaining operational security.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3 class="feature-title">Triple Interface for Different Workflows</h3>
+                    <div><span class="badge">Gaskill CLI</span><span class="badge">GUI</span><span class="badge">Native Binary</span></div>
+                    <p>Choose the interface that matches your workflow: Gaskill CLI for keyboard-driven operator efficiency, GPU-accelerated GUI for team collaboration, or hardened native binary for maximum performance and security in air-gapped environments.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technical Specifications</h2>
+            <h3>Security Compliance</h3>
+            <ul>
+                <li>FIPS 140-2 Level 2 compliant cryptographic module</li>
+                <li>NIST SP 800-193 Platform Firmware Resiliency guidelines</li>
+                <li>OWASP ASVS 3.1.1 input validation standards</li>
+                <li>CIS Docker Benchmark for container security</li>
+            </ul>
+            
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Linux x86_64 (Ubuntu 20.04+, CentOS 8+, Alpine 3.12+)</li>
+                <li>4GB RAM minimum (8GB recommended for AI features)</li>
+                <li>TPM 2.0 chip or hjk-inc security dongle (recommended)</li>
+                <li>Docker 20.10+ (for containerized deployment)</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Live Penetration Test Demo</h2>
+            <p>Watch SafeStrike Obsidian in action as it scans a target network and identifies critical vulnerabilities:</p>
+            <div class="scan-demo" id="scanDemo">
+┌──[hjk-inc@seraphim]─[~]
+└──╼ $ ./bin/safe-strike 10.0.0.5
+{"version":"0.6-SERAPHIM","target":"10.0.0.5","scan":"10.0.0.5:22/ssh,80/http,443/https","ai":{"critical":["SSH version leak","HTTP headers expose server version"],"next":["run nuclei -t exposures/configs/","test for CVE-2021-41773"]}}
+[ SAFE STRIKE 0.6-SERAPHIM ]
+> TACTICAL RECON
+<span class="blink">●</span> 10.0.0.5:22/ssh
+<span class="blink">●</span> 10.0.0.5:80/http
+○ 10.0.0.5:443/https
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Download & Installation</h2>
+            <p>SafeStrike Obsidian is open-source and free to use for security research and authorized penetration testing. Get started in under 60 seconds:</p>
+            
+            <div class="install">
+                <h2>Quick Start Guide</h2>
+                <div class="terminal">
+                    <div><span class="prompt">$</span><span class="command"> git clone https://github.com/hjk-inc/safe-strike-obsidian</span></div>
+                    <div><span class="prompt">$</span><span class="command"> cd safe-strike-obsidian</span></div>
+                    <div><span class="prompt">$</span><span class="command"> python setup.py build</span></div>
+                    <div><span class="prompt">$</span><span class="command"> ./bin/safe-strike 192.168.1.1</span></div>
+                </div>
+                <a href="https://github.com/hjk-inc/SafeStrike-" class="btn">🌐 VIEW GITHUB REPOSITORY</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <h3>Is SafeStrike Obsidian free to use?</h3>
+            <p>Yes, SafeStrike Obsidian is completely free and open-source under the MIT License. It's designed for security researchers, red teams, and authorized penetration testers.</p>
+            
+            <h3>What makes SafeStrike different from other pentest tools?</h3>
+            <p>Unlike tools like Metasploit, Nmap, or Burp Suite, SafeStrike integrates AI automation with hardware-level security. The AI self-audits for vulnerabilities, keys are hardware-bound, and the triple-interface design supports different operational workflows.</p>
+            
+            <h3>Does SafeStrike require cloud services or external APIs?</h3>
+            <p>No. SafeStrike runs entirely offline. The AI models (Phi-3-mini) run locally on your machine, and all processing happens on-device for maximum security and privacy.</p>
+            
+            <h3>What security certifications does SafeStrike have?</h3>
+            <p>SafeStrike Obsidian is designed to meet FIPS 140-2 Level 2 requirements and follows NIST SP 800-193 guidelines. While not formally certified (due to open-source nature), the architecture supports certification pathways for enterprise deployments.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>SafeStrike Obsidian v0.6 "Seraphim" • hjk-inc Security Engineering • © 2025</p>
+        <p>For authorized use only. Not for civilian deployment.</p>
+        <p><a href="https://github.com/hjk-inc/SafeStrike-/blob/main/LICENSE">MIT License</a> | <a href="https//hjk-inc.github.io">Security Policy</a></p>
+    </footer>
+
+    <!-- Hidden SEO content -->
+    <div class="seo-content">
+        <h2>Penetration Testing Tool Comparison</h2>
+        <p>SafeStrike Obsidian vs Metasploit vs Burp Suite vs Nmap: SafeStrike Obsidian combines the network scanning capabilities of Nmap, the exploitation framework of Metasploit, and the web application testing of Burp Suite into a single AI-powered platform. Unlike these tools, SafeStrike adds hardware-bound security and AI self-audit capabilities.</p>
+        
+        <h2>AI in Cybersecurity</h2>
+        <p>How AI is transforming penetration testing: SafeStrike Obsidian uses local large language models to analyze scan results, suggest attack paths, and generate exploit code. The AI runs entirely offline on your machine, ensuring no sensitive data is sent to external servers.</p>
+        
+        <h2>Hardware Security Modules</h2>
+        <p>Why hardware security matters in penetration testing tools: Static API keys and hardcoded credentials in pentest tools create security risks. SafeStrike Obsidian eliminates this by deriving cryptographic keys from hardware entropy sources (TPM 2.0, USB security dongles).</p>
+        
+        <h2>FIPS 140-2 Compliance for Security Tools</h2>
+        <p>Understanding FIPS 140-2 requirements for cryptographic modules in penetration testing software. SafeStrike Obsidian implements SHA3-256 hashing, secure key derivation, and runtime integrity checks to meet FIPS 140-2 Level 2 standards.</p>
+    </div>
+
+    <script>
+        // Simple terminal animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const demo = document.getElementById('scanDemo');
+            const blinkChars = document.querySelectorAll('.blink');
+            
+            setInterval(() => {
+                blinkChars.forEach(el => {
+                    el.textContent = el.textContent === '●' ? '○' : '●';
+                });
+            }, 500);
+            
+            // Add structured data for better SEO
+            if (typeof structuredData === 'undefined') {
+                const script = document.createElement('script');
+                script.type = 'application/ld+json';
+                script.textContent = JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "Is SafeStrike Obsidian free to use?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Yes, SafeStrike Obsidian is completely free and open-source under the MIT License."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "What makes SafeStrike different from other pentest tools?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "SafeStrike integrates AI automation with hardware-level security and AI self-audit capabilities."
+                            }
+                        }
+                    ]
+                });
+                document.head.appendChild(script);
+            }
+        });
+    </script>
+</body>
+</html>
+
